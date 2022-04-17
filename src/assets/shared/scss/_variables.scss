@@ -1,0 +1,36 @@
+// == colors ==/
+$rich-black-fogra-39: #090B0B;
+$heliotrope-gray: #a39ba8;
+$light-steel-blue: #edf5fc;
+$emerald: #23CE6B;
+$alice-blue: #edf5fc;
+$cerulean-blue: #0372f2;
+
+$black: #000;
+$white: #fff;
+
+// == theme color settings == //
+$theme-primary: $rich-black-fogra-39;
+$theme-secondary:  $alice-blue;
+$theme-tertiary: $heliotrope-gray;
+$theme-support: $cerulean-blue;
+
+// == theme text color settings == //
+$heading-primary: $rich-black-fogra-39;
+$anchor-primary: $theme-support;
+$text-primary: $black;
+$text-secondary: $alice-blue;
+
+// == theme button color settings == //
+$btn-primary: $theme-support;
+$btn-secondary: $alice-blue;
+
+//== font weight settings ==/
+$font-weight-regular: 400;
+$font-weight-strong: 700;
+
+//== responsive breakpoint settings ==//
+$tablet: 768px;
+$laptop: 1024px;
+$desktop: 1440px;
+$desktop-xl: 1920px;

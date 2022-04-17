@@ -1,0 +1,76 @@
+.form {
+    .form__group {
+        margin-bottom: 1rem;
+        &:last-of-type {
+            margin-bottom: 1.5rem;
+        }
+
+        &.form__group--tos {
+            display: flex;
+            align-items: center;
+
+            label {
+                margin: 0;
+            }
+
+            a {
+                font-size: .7rem;
+            }
+        }
+    }
+
+    label {
+        color: $theme-primary;
+        display: block;
+        font-size: .7rem;
+        letter-spacing: 3px;
+        text-align: left;
+        margin-bottom: .5rem;
+        padding-left: 2px;
+    }
+
+    input,
+    textarea,
+    select {
+        border: 1px solid #e2e2e2;
+        border-radius: 7px;
+        color: $text-primary;
+        display: block;
+        font-size: .8rem;
+        line-height: 1;
+        letter-spacing: 2px;
+        padding: .45rem .85rem;
+        transition: border .25s ease-out, box-shadow .25s ease-out;
+        width: 100%;
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(3, 114, 242, 1);
+            border: 1px solid rgba(3, 114, 242, 1);
+        }
+    }
+
+    input[type="submit"],
+    button[type="submit"] {
+        background-color: $btn-primary;
+        cursor: pointer;
+        border: 1px solid $btn-primary;
+        border-radius: 5px;
+        color: $text-secondary;
+        font-size: .8rem;
+        font-weight: $font-weight-strong;
+        line-height: 1;
+        width: 100%;
+        padding: 0.7rem 1.25rem;
+    }
+
+    input[type="checkbox"] {
+        height: 14px;
+        margin-right: .5rem;
+        width: 14px;
+    }
+
+    option {
+        font-size: .7rem;
+    }
+}

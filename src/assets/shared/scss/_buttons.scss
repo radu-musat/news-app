@@ -1,0 +1,23 @@
+//* == main buttons == //
+.btn-primary {
+    background-color: $btn-primary;
+    border: 1px solid $btn-primary;
+    border-radius: 5px;
+    color: $text-secondary;
+    font-size: .8rem;
+    font-weight: $font-weight-strong;
+    line-height: 1;
+    padding: .7rem 1.25rem;
+    display: inline-block;
+    text-align: center;
+    transition: transform .3s ease-out, box-shadow .3s ease-out, color .3s ease-out;
+
+    &:hover,
+    &:focus,
+    &.btn-primary--active {
+        background-color: $btn-secondary;
+        box-shadow: 0 0.5em 0.5em -0.4em $btn-primary;
+        color: $btn-primary;
+        transform: translateY(-0.25em);
+    }
+}

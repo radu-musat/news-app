@@ -1,0 +1,11 @@
+.container {
+    max-width: 1516px;
+    margin: 0 auto;
+    padding: 50px 38px;
+}
+
+@media only screen and (min-width: $tablet) {
+    .container {
+        padding: 80px 38px;
+    }
+}
