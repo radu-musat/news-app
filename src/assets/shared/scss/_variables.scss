@@ -5,6 +5,7 @@ $light-steel-blue: #edf5fc;
 $emerald: #23CE6B;
 $alice-blue: #edf5fc;
 $cerulean-blue: #0372f2;
+$red: #e20000;
 
 $black: #000;
 $white: #fff;
@@ -14,6 +15,8 @@ $theme-primary: $rich-black-fogra-39;
 $theme-secondary:  $alice-blue;
 $theme-tertiary: $heliotrope-gray;
 $theme-support: $cerulean-blue;
+$theme-valid-alert: $emerald;
+$theme-invalid-alert: $red;
 
 // == theme text color settings == //
 $heading-primary: $rich-black-fogra-39;

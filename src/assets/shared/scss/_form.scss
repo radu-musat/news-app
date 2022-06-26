@@ -1,3 +1,25 @@
+.form-message {
+    color: $text-secondary;
+    display: block;
+    font-size: .8rem;
+    margin-bottom: 1.5rem;
+    padding: .5rem;
+    text-align: center;
+}
+
+.form-message--in-progress {
+    border-radius: 2px;
+    background-color: $theme-support;
+}
+
+.form-message--valid {
+    background-color: $theme-valid-alert;
+}
+
+.form-message--invalid {
+    background-color: $theme-invalid-alert;
+}
+
 .form {
     .form__group {
         margin-bottom: 1rem;
@@ -7,6 +29,7 @@
 
         &.form__group--tos {
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
 
             label {
@@ -16,6 +39,20 @@
             a {
                 font-size: .7rem;
             }
+
+            span {
+                flex-basis: 100%;
+            }
+        }
+
+        span,
+        .form__group--multi-error {
+            color: $red;
+            font-size: .7rem;
+            display: block;
+            margin-top: .5rem;
+            padding-left: 2px;
+            text-align: left;
         }
     }
 

@@ -1,6 +1,7 @@
 <template>
-  <div class="authentication" :class="{ 'authentication__hidden': hidden }">
+  <div class="authentication" :class="{ 'authentication__hidden': !authModalShow }">
     <div class="authentication__form">
+			<i class="fa-solid fa-xmark" @click="toggleAuthModal"></i>
       <h3 class="h2"> {{ tab }} </h3>
       <div class="authentication__form-tabs">
         <a class="btn-primary" :class="{'btn-primary--active': tab === 'login'}" href="#" @click.prevent="tab = 'login'">Login</a>
@@ -11,12 +12,13 @@
 			<app-login-form v-if="tab === 'login'"/>
 
 			<!-- Register Form -->
-			<app-register-form v-else/>
+			<app-register-form v-if="tab === 'register'"/>
     </div>
   </div>
 </template>
 
 <script>
+import { mapMutations, mapState }	 from	'vuex';
 import AppLoginForm from './LoginForm.vue';
 import AppRegisterForm from './RegisterForm.vue';
 
@@ -29,8 +31,16 @@ export default {
 	data() {
 		return {
 			tab: 'login',
-			hidden: true,
 		};
+	},
+	computed: {
+		...mapState(['authModalShow']),
+	},
+	methods: {
+		// toggleAuthModal() {
+		// 	this.$store.commit('toggleAuthModal');
+		// },
+		...mapMutations(['toggleAuthModal']),
 	},
 };
 </script>
@@ -62,9 +72,20 @@ export default {
     background-color: $theme-secondary;
     box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1),0 10px 10px -5px rgba(0,0,0,0.04);
 		display: inline-block;
-    max-width: 500px;
-    padding: 20px;
+    max-width: 600px;
+    padding: 1rem;
+		position: relative;
     width: 100%;
+
+		i {
+			cursor: pointer;
+			font-size: 25px;
+			height: 25px;
+			position: absolute;
+			right: 25px;
+			top: 15px;
+			width: 25px;
+		}
 
     h3 {
 			margin-bottom: 1.5rem;
@@ -85,23 +106,27 @@ export default {
     }
   }
 
-  @media only screen and (min-width: $tablet) {
+	@media only screen and (min-width: $tablet) {
+		.authentication__form {
+			padding: 1.5rem;
+		}
 
+		.authentication__form-tabs {
+			display: flex;
+			justify-content: space-between;
+
+			.btn-primary:first-child {
+				margin: 0;
+			}
+		}
+	}
+
+  @media only screen and (min-width: $desktop-xl) {
 		.authentication__form {
 			position: relative;
 			top: 50%;
 			transform: translateY(-50%);
 		}
-
-    .authentication__form-tabs {
-      display: flex;
-      justify-content: space-between;
-
-      .btn-primary:first-child {
-        margin: 0;
-      }
-    }
-
   }
 
 </style>

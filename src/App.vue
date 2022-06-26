@@ -1,6 +1,7 @@
 <template>
-   <app-header/>
-   <auth-modal/>
+    <app-header/>
+		<router-view/>
+    <auth-modal/>
 </template>
 
 <script>
@@ -11,6 +12,9 @@ export default {
 	components: {
 		AppHeader,
 		AuthModal,
+	},
+	created() {
+		this.$store.dispatch('init_login');
 	},
 };
 </script>

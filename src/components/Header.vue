@@ -4,25 +4,36 @@
       <nav>
 
         <ul class="header-news">
-          <li>
-            <a href="#">latest</a>
-          </li>
-          <li>
-            <a href="#">world</a>
-          </li>
-          <li>
-            <a href="#">climate</a>
-          </li>
+						<li>
+								<router-link :to="{ name: 'world' }">world news</router-link>
+						</li>
+						<li>
+								<a href="#">climate</a>
+						</li>
+						<li>
+							<a href="#">my feed</a>
+						</li>
         </ul>
 
-        <a class="branding" href="#">
+        <router-link class="branding" to="/">
           <img alt="webpilgrim logo" src="../../public/assets/image.png">
-        </a>
+        </router-link>
 
         <ul class="header-authentication">
-          <li>
-						<a href="#" @click.prevent="toggleAuthModal">login / register</a>
-					</li>
+						<li v-if="!userLoggedIn">
+								<a href="#" @click.prevent="toggleAuthModal">login / register</a>
+						</li>
+						<template v-else>
+							<li>
+								<a href="#" @click.prevent="logout">logout</a>
+							</li>
+							<li>
+								<router-link :to="{ name: 'manage' }">manage</router-link>
+							</li>
+						</template>
+						<li>
+								<router-link :to="{ name: 'about' }">about</router-link>
+						</li>
         </ul>
 
       </nav>
@@ -31,7 +42,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations, mapState } from 'vuex';
 
 export default {
 	name: 'Header',
@@ -42,6 +53,16 @@ export default {
 	},
 	methods: {
 		...mapMutations(['toggleAuthModal']),
+		logout() {
+			this.$store.dispatch('logout');
+
+			if (this.$route.meta.requiresAuth) {
+				this.$router.push({ name: 'world' });
+			}
+		},
+	},
+	computed: {
+		...mapState(['userLoggedIn']),
 	},
 };
 </script>
@@ -75,6 +96,7 @@ export default {
   ul {
     align-items: center;
     display: flex;
+		flex-wrap: wrap;
 
     &.header-news {
       order: 3;
@@ -94,7 +116,8 @@ export default {
         margin-right: 0;
       }
 
-      &::before {
+      &::before,
+			a.active::before {
         background-color: $theme-secondary;
         content: '';
         display: block;
@@ -107,11 +130,17 @@ export default {
         z-index: 1;
       }
 
-      &:hover a {
+			a.active::before {
+				z-index: -1;
+			}
+
+      &:hover a,
+			a.active {
         color: $theme-primary;
       }
 
-      &:hover::before {
+      &:hover::before,
+			a.active::before {
         width: 100%
       }
     }
@@ -128,7 +157,7 @@ export default {
 
   }
 
-  @media only screen and (min-width: $tablet) {
+  @media only screen and (min-width: $laptop) {
     .container {
       padding: 1.25rem 1.9rem;
     }
@@ -143,11 +172,21 @@ export default {
     }
 
     ul {
+			flex-basis: 30%;
       &.header-news,
       &.header-authentication {
         order: unset;
         margin: 0;
       }
+
+			&.header-news {
+				margin-left: -15px;
+			}
+
+			&.header-authentication {
+				justify-content: flex-end;
+				margin-right: -15px;
+			}
     }
   }
 </style>
