@@ -9,6 +9,11 @@ yarn install
 ```
 yarn serve
 ```
+### You can use the [Vue UI](https://www.telerik.com/blogs/creating-and-managing-vue-projects-with-vue-ui) alternatively
+```
+vue ui
+```
+
 
 ### Compiles and minifies for production
 ```
