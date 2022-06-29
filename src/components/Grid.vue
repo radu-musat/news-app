@@ -44,7 +44,6 @@ export default {
 			if (this.news[i].multimedia.length > 0) {
 				const hostUrl = this.getHostName(this.news[i].web_url);
 				const picture = this.news[i].multimedia[0].url;
-
 				imageEl.setAttribute('src', `https://${hostUrl}/${picture}`);
 			} else {
 				imageEl.setAttribute('src', '/assets/post.jpg');

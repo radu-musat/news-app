@@ -51,7 +51,6 @@ export default {
 			this.login_alert_msg = 'Login successful!';
 			this.login_alert_variant = 'form-message--valid';
 			window.location.reload();
-			console.log(values);
 		},
 	},
 };

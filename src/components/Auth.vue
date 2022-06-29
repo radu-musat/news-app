@@ -37,9 +37,6 @@ export default {
 		...mapState(['authModalShow']),
 	},
 	methods: {
-		// toggleAuthModal() {
-		// 	this.$store.commit('toggleAuthModal');
-		// },
 		...mapMutations(['toggleAuthModal']),
 	},
 };

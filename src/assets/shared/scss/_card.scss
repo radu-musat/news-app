@@ -63,3 +63,30 @@
         }
     }
 }
+
+.card--tags {
+    align-items: center;
+    flex-direction: row;
+    cursor: grab;
+    font-size: .8rem;
+    justify-content: space-between;
+    padding: .5rem;
+    text-align: center;
+
+    &:active {
+        cursor: grabbing;
+    }
+
+    i {
+        background-color:   $theme-valid-alert;
+        color: $theme-secondary;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: .7rem;
+        padding: .2rem;
+
+        &.danger {
+            background-color: $theme-invalid-alert;
+        }
+    }
+}
