@@ -1,4 +1,12 @@
-# webpilgrim
+# webpilgrim 
+
+work in progress
+
+Thanks for taking the time to check out this demo app.
+
+This customizable news feed app uses the [new york times api](https://developer.nytimes.com/).
+
+While testing, please note that you need to register an account. For demo purposes the feed customization feature is locked behind a login.
 
 ## Project setup
 ```
