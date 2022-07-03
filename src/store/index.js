@@ -27,7 +27,7 @@ export default createStore({
 	},
 
 	actions: {
-		// ctx - same this.$store.commit - below it's destructured
+		// ctx - same as this.$store.commit - below it's destructured (ctx.commit)
 		async register({ commit }, payload) {
 			const userCredentials = await auth.createUserWithEmailAndPassword(
 				payload.email,

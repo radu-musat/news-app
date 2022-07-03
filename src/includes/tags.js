@@ -1,0 +1,16 @@
+export default [
+	'world',
+	'sports',
+	'theater',
+	'style',
+	'politics',
+	'movies',
+	'jobs',
+	'media',
+	'culture',
+	'education',
+	'books',
+	'business',
+	'arts',
+	'fashion',
+];
