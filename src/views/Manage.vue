@@ -1,9 +1,11 @@
 <template>
+	<app-loading :isLoading="contentIsLoading"/>
 	<div class="container manage">
 		<h1>Manage your custom feed</h1>
 		<small class="manage__description">you can drag and drop tags from box to box to configure your current feed</small>
+		<p class="manage__error" v-if="showTagError">{{ errorMessage }}</p>
 		<div class="manage__panels">
-			<div class="manage__panel">
+			<div class="manage__panel" :data-disabled="showTagError">
 				<h2>Available tags</h2>
 				<div class="tags-grid"
 					@dragenter.prevent.stop
@@ -17,7 +19,7 @@
 				</div>
 			</div>
 
-			<div class="manage__panel">
+			<div class="manage__panel" :data-disabled="showTagError">
 				<h2>My Tags</h2>
 				<div class="tags-grid"
 					@dragenter.prevent.stop
@@ -35,18 +37,28 @@
 </template>
 
 <script>
-import tags from '@/includes/tags';
 import { auth, configsCollection } from '@/includes/firebase';
+import { mapActions, mapState	} from 'vuex';
+import AppLoading from '@/components/Loading.vue';
 
 export default {
 	name: 'Manage',
+	components: {
+		AppLoading,
+	},
 	data() {
 		return {
-			tags,
+			contentIsLoading: true,
+			tags: [],
 			selectedTags: [],
+			errorMessage: `
+			Something went wrong while getting your feed configuration. Please refresh the page or try again later.
+			If the problem persists please notify the developer. Thank you!
+			`,
 		};
 	},
 	computed: {
+		...mapState(['showTagError', 'tagConfig']),
 		userTagConfig() {
 			return	{
 				tags: [...this.tags],
@@ -63,6 +75,7 @@ export default {
 		},
 	},
 	methods: {
+		...mapActions(['checkForUserConfig']),
 		dragStart(e) {
 			const { tag } = e.target.dataset;
 			e.dataTransfer.setData('tagName', tag);
@@ -83,16 +96,27 @@ export default {
 				tagArray.splice(tagIndex, 1);
 			}
 		},
+		setTags() {
+			this.tags = [...this.tagConfig.tags];
+			this.selectedTags = [...this.tagConfig.selectedTags];
+		},
 		async uploadData() {
 			const data = {
 				uid: auth.currentUser.uid,
 				tagConfig: this.userTagConfig,
 			};
 
-			await configsCollection.doc(auth.currentUser.uid).set(data);
+			try {
+				await configsCollection.doc(auth.currentUser.uid).set(data);
+			} catch (err) {
+				console.log(err);
+			}
 		},
 	},
-	mounted() {
+	async created() {
+		await this.checkForUserConfig();
+		this.setTags();
+		this.contentIsLoading = false;
 	},
 };
 </script>
@@ -135,6 +159,22 @@ export default {
 				background-color: $theme-secondary;
 			}
 		}
+
+		.manage__panel[data-disabled="true"] {
+			pointer-events: none;
+			opacity: .5;
+		}
+	}
+
+	.manage__error {
+		background-color: $theme-secondary;
+		color: $theme-invalid-alert;
+		display: inline-block;
+		font-size: .7rem;
+		line-height: 1.25;
+		margin-bottom: 1rem;
+		max-width: 490px;
+		padding: .5rem;
 	}
 
 	@media only screen and (min-width: $tablet) {

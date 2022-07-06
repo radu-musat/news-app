@@ -2,7 +2,6 @@
 	<div class="grid">
 		<a class="card" v-for="item in news"  v-bind:key="item.headline.main" :href="item.web_url" target="_blank">
 			<figure>
-				<!--constructImageUrl(item) -->
 				<img  alt="article image"  ref="imageElements">
 				<figcaption>
 					<span> posted on</span>

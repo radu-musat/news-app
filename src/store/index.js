@@ -1,11 +1,14 @@
 import { createStore } from 'vuex';
-import { auth, usersCollection } from '@/includes/firebase';
+import { auth, usersCollection, configsCollection } from '@/includes/firebase';
+import defaultTags from '@/includes/tags';
 
 export default createStore({
 	state: {
 		authModalShow: false,
 		userLoggedIn: false,
+		showTagError: false,
 		news: [],
+		tagConfig: {},
 		nytSearchApi: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q=',
 		apiKey: 'ZKndWafQR36iVe9yLwpsmYivsXcorGov',
 	},
@@ -17,8 +20,18 @@ export default createStore({
 		toggleAuth(state) {
 			state.userLoggedIn = !state.userLoggedIn;
 		},
+		toggleTagError(state) {
+			state.showTagError = !state.showTagError;
+		},
 		setNews(state, payload) {
 			state.news = [...payload.response.docs];
+		},
+		setTagConfig(state, payload) {
+			// console.log(payload);
+			state.tagConfig = payload;
+		},
+		setTagError(state) {
+			state.showTagError = !this.state.showTagError;
 		},
 	},
 
@@ -73,13 +86,39 @@ export default createStore({
 			try {
 				const request = await fetch(`${state.nytSearchApi}${payload}&api-key=${state.apiKey}`);
 				const response = await request.json();
-				// console.log(response);
 				commit('setNews', response);
 			} catch (err) {
 				// eslint-disable-next-line no-alert
 				alert('something went wrong please try reloading the page');
 				// eslint-disable-next-line no-alert
 				throw new Error(err);
+			}
+		},
+		setTagConfig({ commit }, payload) {
+			commit('setTagConfig', payload);
+		},
+		async checkForUserConfig({ commit, dispatch }) {
+			const { uid } = auth.currentUser;
+			const baseConfig = {
+				tags: defaultTags,
+				selectedTags: [],
+			};
+			let config;
+
+			try {
+				config = await configsCollection.doc(uid).get();
+				if (config) {
+					const data = config.data();
+
+					if (!data || (!data.tagConfig.tags && !data.tagConfig.selectedTags)) {
+						dispatch('setTagConfig', baseConfig);
+					} else {
+						dispatch('setTagConfig', data.tagConfig);
+					}
+				}
+			} catch (err) {
+				commit('setTagError');
+				console.error(err);
 			}
 		},
 	},

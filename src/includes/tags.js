@@ -13,4 +13,5 @@ export default [
 	'business',
 	'arts',
 	'fashion',
+	'weather',
 ];

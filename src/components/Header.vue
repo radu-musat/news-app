@@ -7,11 +7,11 @@
 						<li>
 								<router-link :to="{ name: 'world' }">world news</router-link>
 						</li>
-						<li>
-								<a href="#">climate</a>
+						<li  v-if="userLoggedIn">
+							<router-link :to="{ name: 'my-feed' }">my feed</router-link>
 						</li>
 						<li>
-							<a href="#">my feed</a>
+								<a href="#">climate</a>
 						</li>
         </ul>
 

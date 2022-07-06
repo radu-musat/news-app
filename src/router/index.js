@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '@/views/Home.vue';
 import About from '@/views/About.vue';
 import Manage from '@/views/Manage.vue';
+import CustomFeed from '@/views/CustomFeed.vue';
 import store from '@/store';
 
 const routes = [
@@ -25,6 +26,14 @@ const routes = [
 		// beforeEnter: (to, from, next) => {
 		// 	next();
 		// },
+	},
+	{
+		name: 'my-feed',
+		path: '/my-feed',
+		component: CustomFeed,
+		meta: {
+			requiresAuth: true,
+		},
 	},
 	{
 		path: '/:catchAll(.*)*',

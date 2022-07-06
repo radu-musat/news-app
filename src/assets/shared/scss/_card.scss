@@ -90,3 +90,13 @@
         }
     }
 }
+
+.card--tags-simple,
+.card--tags-simple:active {
+    cursor: pointer;
+
+    &.active {
+        background-color: $theme-support;
+        color: $theme-secondary;
+    }
+}

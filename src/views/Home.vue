@@ -1,9 +1,7 @@
 <template>
 	<app-loading :isLoading="contentIsLoading"/>
 	<div class="container">
-		<h1>
-			World News
-		</h1>
+		<h1>World News</h1>
 		<app-grid :news="news"/>
   </div>
 </template>
@@ -24,6 +22,9 @@ export default {
 			contentIsLoading: true,
 		};
 	},
+	computed: {
+		...mapState(['news']),
+	},
 	methods: {
 		...mapActions(['setNews']),
 	},
@@ -31,8 +32,6 @@ export default {
 		await this.setNews('world');
 		this.contentIsLoading = !this.contentIsLoading;
 	},
-	computed: {
-		...mapState(['news']),
-	},
+
 };
 </script>
