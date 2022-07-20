@@ -11,6 +11,7 @@ export default createStore({
 		tagConfig: {},
 		nytSearchApi: 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q=',
 		apiKey: 'ZKndWafQR36iVe9yLwpsmYivsXcorGov',
+		weatherApiKey: 'efed1650d269ddf8fc4da49595587e5e',
 	},
 
 	mutations: {

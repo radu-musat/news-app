@@ -1,6 +1,6 @@
 # webpilgrim 
 
-work in progress
+Live preview [here](https://news-app-gamma-gold.vercel.app/).
 
 Thanks for taking the time to check out this demo app.
 

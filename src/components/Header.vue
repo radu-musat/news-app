@@ -11,7 +11,7 @@
 							<router-link :to="{ name: 'my-feed' }">my feed</router-link>
 						</li>
 						<li>
-								<a href="#">climate</a>
+								<router-link :to="{ name: 'climate' }">climate</router-link>
 						</li>
         </ul>
 
@@ -97,6 +97,7 @@ export default {
     align-items: center;
     display: flex;
 		flex-wrap: wrap;
+		justify-content: center;
 
     &.header-news {
       order: 3;
@@ -157,7 +158,7 @@ export default {
 
   }
 
-  @media only screen and (min-width: $laptop) {
+  @media only screen and (min-width: $laptop-l) {
     .container {
       padding: 1.25rem 1.9rem;
     }

@@ -111,3 +111,12 @@
         font-size: .7rem;
     }
 }
+
+.form__invalid {
+    color: $red;
+    font-size: .7rem;
+    display: block;
+    margin-top: .5rem;
+    padding-left: 2px;
+    text-align: left;
+}

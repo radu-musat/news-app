@@ -12,8 +12,18 @@
 }
 
 .container.container--help {
+    background-color: $theme-primary;
+    max-width: none;
     margin-top: auto;
     padding: 10px 38px;
+
+    p.nyt-cudos {
+        color: $text-secondary;
+        margin: 0;
+        a {
+            color: $theme-support;
+        }
+    }
 }
 
 @media only screen and (min-width: $tablet) {

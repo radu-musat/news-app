@@ -3,6 +3,7 @@ import Home from '@/views/Home.vue';
 import About from '@/views/About.vue';
 import Manage from '@/views/Manage.vue';
 import CustomFeed from '@/views/CustomFeed.vue';
+import Climate from '@/views/Climate.vue';
 import store from '@/store';
 
 const routes = [
@@ -34,6 +35,11 @@ const routes = [
 		meta: {
 			requiresAuth: true,
 		},
+	},
+	{
+		name: 'climate',
+		path: '/climate',
+		component: Climate,
 	},
 	{
 		path: '/:catchAll(.*)*',

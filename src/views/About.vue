@@ -15,9 +15,9 @@
 			purposes.
 		</p>
 		<h2>Author info/contact</h2>
-		<p>I'm a web developer,I'm always looking to expand my skill-set, If you'd like to know more about me you can do so here <a href="https://radum.eu/">here</a></p>
+		<p>I'm a web developer,I'm always looking to expand my skill-set, If you'd like to know more about me you can do so here <a href="https://radum.eu/">here</a>.</p>
 		<p>If you'd like to contact me you can do so at the following email address
-		<a href="mailto:radu.musat.abc@gmail.com" class="footer__email">radu.musat.abc@gmail.com</a></p>
+		<a href="mailto:radu.musat.abc@gmail.com" class="footer__email">radu.musat.abc@gmail.com</a>.</p>
   </div>
 
 </template>
@@ -26,7 +26,7 @@ h1, h2 {
 	text-align: center;
 	text-decoration: underline;
 	&:not(:first-child) {
-		margin-top: 3.5rem;
+		margin-top: 2rem;
 	}
 }
 
