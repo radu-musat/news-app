@@ -26,7 +26,7 @@
 
 			<div class="weather-box__block">
 				<div class="weather-box__data-item">
-					<i class="fa-solid fa-temperature-three-quarters"></i> -	{{ Math.round(weather.main.temp ) }}
+					<i class="fa-solid fa-temperature-three-quarters"></i> -	{{ Math.round(weather.main.temp ) }} °C
 				</div>
 				<div class="weather-box__data-item">
 					<i class="fa-solid fa-cloud-sun"></i> - {{ weather.weather[0].main }}
